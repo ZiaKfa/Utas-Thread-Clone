@@ -23,6 +23,7 @@ if(isset($_POST["register"])){
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous"/>
+    <!-- Font CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900& display=swap" rel="stylesheet"/>
@@ -31,9 +32,10 @@ if(isset($_POST["register"])){
     <title>Sign Up - Queasy</title>
   </head>
   <body>
+  <a href="index.php">back home</a>
     <div class="login d-flex justify-content-center align-items-center min-vh-100">
       <div class="container main">
-        <div class="row border rounded-4 shadow box-area">
+        <div class="row border rounded-4 box-area">
           <!-- login left -->
           <div class="col-md-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #faf7f4">
             <div class="featured-image">
@@ -42,16 +44,16 @@ if(isset($_POST["register"])){
           </div>
           <!-- login right -->
           <div class="col-md-8 rounded-start-4 right-box" style="background-color: #fcc822">
-            <div class="header m-4">
+            <div class="header mt-4 mx-4">
               <h1>Qu<span>easy</span></h1>
             </div>
             <div class="content mx-5 my-4">
-            <p>Welcome to Queasy!</p>
+            <p class="m-0">Welcome to Queasy!</p>
               <p><small>Create a free account in 2 steps</small></p>
               <form action="" method="POST" >
               <label for="username" class="form-label mb-1">Username</label>
               <input type="username" name="username" class="form-control" id="username" placeholder="Enter your username"/>
-              <label for="email" class="form-label mb-1">Email</label>
+              <label for="email" class="form-label mt-2 mb-1">Email</label>
               <input type="email" name="email" class="form-control" id="email" placeholder="Enter your username"/>
   
               <label for="password" class="form-label mt-2 mb-1">Password</label>
@@ -59,10 +61,10 @@ if(isset($_POST["register"])){
                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password"/>
                 <img id="passwordIcon" src="img/eye-solid.svg" alt="show" onclick="togglePassword()"/>
               </div>
-              <label for="password2" class="form-label mt-2 mb-1">Konfirmasi Password</label>
+              <label for="password2" class="form-label mt-2 mb-1">Confirm Password</label>
               <div class="group-input">
                 <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm your password"/>
-                <img id="passwordIcon" src="img/eye-solid.svg" alt="show" onclick="togglePassword()"/>
+                <img id="passwordIcon2" src="img/eye-solid.svg" alt="show" onclick="togglePassword2()"/>
               </div>
               <button type="submit" name="register" class="btn btn-outline-dark mt-3">Next</button>
               </form>
@@ -83,6 +85,18 @@ if(isset($_POST["register"])){
         } else {
           passwordField.type = "password";
           passwordIcon.src = "img/eye-solid.svg";
+        }
+      }
+      function togglePassword2() {
+        const passwordField2 = document.getElementById("password2");
+        const passwordIcon2 = document.getElementById("passwordIcon2");
+
+        if (passwordField2.type === "password") {
+          passwordField2.type = "text";
+          passwordIcon2.src = "img/eye-slash-solid.svg";
+        } else {
+          passwordField2.type = "password";
+          passwordIcon2.src = "img/eye-solid.svg";
         }
       }
     </script>

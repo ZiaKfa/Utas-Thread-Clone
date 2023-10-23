@@ -44,8 +44,9 @@ if(mysqli_num_rows($user) === 1){
     <title>Login - Queasy</title>
   </head>
   <body>
+    <a href="index.php">back home</a>
     <form action="" method="POST">
-    <div class="login d-flex justify-content-center align-items-center min-vh-100">
+    <div class="login d-flex justify-content-center align-items-center ">
       <div class="container main">
         <div class="row border rounded-4 shadow box-area">
         <!-- login left -->
@@ -62,10 +63,9 @@ if(mysqli_num_rows($user) === 1){
             <div class="content mx-5">
               <p>Welcome Back!</p>
               <small>Login to your account</small></p>
-              <?php if (isset($error)) : ?>
-                <p>username / password salah</p>
-              <?php endif; ?>
-              
+                <?php if(isset($error)) : ?>
+                    <p><small>Incorrect username/password</small></p>
+                <?php endif; ?>
               
               <label for="username" class="form-label mt-2 mb-1">Username</label>
               <input type="username" name="username" class="form-control" id="username" placeholder="Enter your username"/>
@@ -76,13 +76,13 @@ if(mysqli_num_rows($user) === 1){
                 <img id="passwordIcon" src="img/eye-solid.svg" alt="show" onclick="togglePassword()"/>
               </div>
               <div class="bottom-container">
-                <p>Don't have an account?
-                <a href="register.php" class="text-decoration-none">Sign up</a></p>
+                <p><small>Don't have an account?
+                <a href="register.php" class="text-decoration-none">Sign up</a></small></p>
                 <button class="next btn btn-outline-dark mt-3">Next</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
       </form>
     <script>

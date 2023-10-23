@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #461a42;
+  background-color: #353535;
 }
 
 .main {
@@ -12,6 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  height: 110vh;
 }
 
 .login {
@@ -53,7 +54,7 @@ body {
 
 .box-area{
   width: 800px;
-  height: 450px;
+  height: 550px;
 }
 
 .group-input {
@@ -84,17 +85,36 @@ body {
     max-width: 420px;
     width: 100%;
   }
+  .login small {
+    font-size: 14px;
+  }
+
+  .login p {
+    font-size: 22px;
+  }
+
+  .login h1 {
+    font-size: 38px;
+  }
+
   .login {
-    height: auto;
+    height: 100vh;
+  }
+  
+  .form-label{
+    font-size: 14px;
   }
   .left-box {
     height: 200px;
     overflow: hidden;
     border-radius: 15px 15px 0 0;
   }
-
+  .main {
+    height: 200vh;
+    margin-top: 0px;
+  }
   .right-box {
-    height: 55vh;
+    height: 90vh;
     border-radius: 0 0 0 15px;
   }
 }
