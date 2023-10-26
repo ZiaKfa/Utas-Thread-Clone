@@ -32,7 +32,7 @@ if(isset($_POST["register"])){
     <title>Sign Up - Queasy</title>
   </head>
   <body>
-  <a href="index.php">back home</a>
+  <button class="btn btn-dark m-2"><a href="index.php" class="text-decoration-none text-light">back home</a></button>
     <div class="login d-flex justify-content-center align-items-center min-vh-100">
       <div class="container main">
         <div class="row border rounded-4 box-area">

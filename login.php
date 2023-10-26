@@ -44,7 +44,7 @@ if(mysqli_num_rows($user) === 1){
     <title>Login - Queasy</title>
   </head>
   <body>
-    <a href="index.php">back home</a>
+  <button type="button" class="btn btn-dark m-3"><a href="index.php" class="text-decoration-none text-light"> Back home </a></button>
     <form action="" method="POST">
     <div class="login d-flex justify-content-center align-items-center ">
       <div class="container main">

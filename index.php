@@ -2,24 +2,6 @@
 session_start();
 require_once("functions.php");
 ?>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Queasy</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Ini Homepage</h1>
-
-        <a href="login.php">Login disini</a>
-        <br>
-        <a href="register.php">Register disini</a>
-
-
-    
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="eng">
   <head>
@@ -51,7 +33,6 @@ require_once("functions.php");
   </head>
   <body class="bg-body-tertiary">
     <!-- Navbar -->
-    <!-- Navbar -->
 <nav class="navbar">
   <div class="container-fluid">
     <!-- Logo -->
@@ -64,25 +45,38 @@ require_once("functions.php");
       <li class="nav-item">
         <a class="nav-link mx-2" href="#">About us</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link mx-1" href="#">Contact us</a>
-      </li>
       <?php if(!isset($_SESSION["login"])) : ?>
       <li class="nav-item" id="dropdownItem">
         <a href="login.php"><button type="button" class="btn btn-warning ms-4 me-3 btnlogin">Login</button></a>
       </li>
       <?php endif?>
       <?php if(isset($_SESSION["login"])) : ?>
-      <li class="nav-item" id="dropdownItem">
-        <a href="logout.php"><button type="button" class="btn btn-warning ms-4 me-3 btnlogin">Logout</button></a>
+        <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle rounded-5 bg-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user" style="color: #fcc822;"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><?php echo $_SESSION["username"]; ?></li>
+            <li><a class="dropdown-item" href="#">Profil</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a href="logout.php"><button type="button" class="dropdown-item text-decoration-none">Logout</button></a></li>
+          </ul>
+        </div>
       </li>
       <?php endif?>
     </ul>
   </div>
 </nav>
 
+<?php
+  if(isset($_SESSION["login"])){
+    include("category.php");
+  }  
+?>
 
     <!-- Hero -->
+    <?php if(!isset($_SESSION["login"])) : ?>
     <div class="hero bg-body-tertiary">
         <div class="container">
             <div class="row">
@@ -90,9 +84,8 @@ require_once("functions.php");
                 <h1 class="hero-title">"Test Your Brain<br>With Queasy!"</h1>
                 <p class="hero-text">A quiz platform that helps you to test your knowledge and improve your skills</p>
                 <button type="button" class="btn btn-outline-dark btn-warning shadow">Get Started</button>
-                <?php if(!isset($_SESSION["login"])) : ?>
                 <a href="register.php"><button type="button" class="btn btn-outline-dark btn-light shadow sign">Sign Up</button></a>
-                <?php endif ?>
+
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 image-hero">
                 <img src="img/hero.png" alt="hero" class="hero-img" />
@@ -168,28 +161,28 @@ require_once("functions.php");
       <p class="text-center">Simplify learning and collaboration for students, teachers, and professionals worldwide.</p>
         <div id="carouselExampleCaptions" class="carousel slide w-75 m-auto mt-5" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active"  data-bs-interval="7000">
+            <div class="carousel-item active"  data-bs-interval="4000">
               <img src="img/item1.jpg" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h4>For Teachers</h4>
                 <p class=" text-light fw-light">Embrace the comprehensive, widely admired tool for engagement, instruction, evaluation, and revision that has gained millions of global enthusiasts.</p>
               </div>
             </div>
-            <div class="carousel-item"  data-bs-interval="7000">
+            <div class="carousel-item"  data-bs-interval="4000">
               <img src="img/item2.jpg" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h4>For Students</h4>
                 <p class=" text-light fw-light">New school year, new smart ways to study! Ease your way back to school with flashcards, study groups, goal setting, and our newest features.</p>
               </div>
             </div>
-            <div class="carousel-item"  data-bs-interval="7000">
+            <div class="carousel-item"  data-bs-interval="4000">
               <img src="img/item3.png" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h4>For Family and Friends</h4>
                 <p class=" text-light fw-light">Elevate Your Gatherings with Friends and Family using Queasy! Host thrilling gatherings! Access high-quality, pre-made games or effortlessly craft your own</p>
               </div>
             </div>
-            <div class="carousel-item"  data-bs-interval="7000">
+            <div class="carousel-item"  data-bs-interval="4000">
               <img src="img/item4.png" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h4>For Professionals</h4>
@@ -207,35 +200,38 @@ require_once("functions.php");
           </button>
         </div>
     </div>
-    <!-- Footer -->
-    <footer>
+
+    <?php endif ?>
+    <footer class="max-vw-100">
       <div class="container">
-        <div class="row d-flex align-items-center py-4">
+        <div class="row d-flex align-items-center py-4 px-5 max-vw-100">
           <div class="col-4 logo m-auto">
             <p>Qu<span>easy</span></p>
           </div>
           <div class="col-4 m-auto">
             <div class="f-head mb-2">MENU</div>
-              <div class="mb-2 f-text"><a href="#" class="text-decoration-none">About</a></div>
-              <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Services</a></div>
-              <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Blog</a></div>
-              <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Contact</a></div>
+            <div class="mb-2 f-text"><a href="#" class="text-decoration-none">About</a></div>
+            <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Services</a></div>
+            <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Blog</a></div>
+            <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Contact</a></div>
           </div>
           <div class="col-4 m-auto">
             <div class="f-head mb-2">FOLLOW US</div>
-              <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Instagram</a></div>
-              <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Twitter</a></div>
-              <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Facebook</a></div>
-              <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Youtube</a></div>
+            <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Instagram</a></div>
+            <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Twitter</a></div>
+            <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Facebook</a></div>
+            <div class="mb-2 f-text"><a href="#" class="text-decoration-none">Youtube</a></div>
           </div>
         </div>
-        <div class="row">
+        <div class="row max-vw-100">
           <hr class="text-warning border-3">
           <div class="col text-center text-warning">
-            <span>Copyright © 2023. All Rights Reserved.</span>
+            <span>&copy; 2023 Qu<span>easy</span>. All Rights Reserved.</span>
           </div>
         </div>
-      </footer>
+      </div>
+    </footer>
+      
 
       <script>
         
