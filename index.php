@@ -200,7 +200,6 @@ require_once("functions.php");
           </button>
         </div>
     </div>
-
     <?php endif ?>
     <footer class="max-vw-100">
       <div class="container">
