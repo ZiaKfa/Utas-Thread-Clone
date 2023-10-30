@@ -1,8 +1,15 @@
 <div class="container">
     <div class="row d-flex justify-content-between">
-        <div class="category d-flex justify-content-between">
-            <h2>Category</h2>
-            <a href="#"><button class="btn btn-warning">+ New quiz</button></a>
+        <div class="col-8 m-3 py-3 px-4 bg-white rounded-4 shadow-sm">
+            <h1>Hi, <?php echo $_SESSION["username"]; ?>!👋</h1>
+            <p>Let's start your quiz!</p>
+        </div>
+        <div class="col-3 d-flex flex-column align-items-center my-3 p-3 bg-white rounded-4 shadow-sm">
+            <p>Create your own quiz here</p>
+            <a href="create.php"><button class="btn btn-warning">+ New quiz</button></a>
+        </div>
+        <div class="category">
+            <h3>Category</h3>
         </div>
 
     <?php

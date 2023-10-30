@@ -12,8 +12,8 @@
     $desc = $row["description"];
 ?>
 
-<!doctype html>
-<html lang="eng">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -21,34 +21,71 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
     <link rel="icon" href="img/q!.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Font CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="quiz.css">
+
     <title>Queasy - Quiz</title>
   </head>
   <body>
     <form action="" method="post">
-    <?php
-        include("navbar.php");
-        echo "<h2 class='text-center mt-5'>$title</h2>";
-        echo "<p class='text-center'>$desc</p>";
-        $num = 1;
-        $result2 = mysqli_query($mysqli, "SELECT * FROM questions WHERE quiz_id = $quizid");
-        while($row2 = mysqli_fetch_assoc($result2)){
-            echo "<p>$num.$row2[quest_text]</p>";
-            $result3 = mysqli_query($mysqli, "SELECT * FROM options WHERE question_id = $row2[id]");
-            $alphabet = "A";
-            while($row3 = mysqli_fetch_assoc($result3)){
-                echo "<div class='form-check'>";
-                echo "<input type='radio' name='$row2[id]' value='$row3[id]'>";
-                echo "<label class='form-check-label' for='$row3[id]'>$alphabet. $row3[option_text]</label>";
-                echo "</div>";
-                $alphabet++;
-            }
-            $num++;
-        }
-    ?>
+      <?php
+      include("navbar.php");
+      echo "<h2 class='text-center mt-5'>$title</h2>";
+      echo "<p class='text-center'>$desc</p>";
+      $num = 1;
+      $result2 = mysqli_query($mysqli, "SELECT * FROM questions WHERE quiz_id = $quizid");
+      $questions = array();
+      while($row2 = mysqli_fetch_assoc($result2)){
+          $questions[] = $row2;
+      }
+      $questionIndex = 0;
+
+      if (isset($_POST['next'])) {
+          $questionIndex++;
+      } elseif (isset($_POST['prev'])) {
+          if ($questionIndex > 0) {
+              $questionIndex--;
+          }
+      }
+
+      echo "<div class='container d-flex justify-content-center align-items-center fs-5'>";
+      echo "<div class='w-75'>";
+      echo "<p class='text-center'>" . ($num + 1) . ". " . $questions[$questionIndex]['quest_text'] . "</p>";
+      $result3 = mysqli_query($mysqli, "SELECT * FROM options WHERE question_id = {$questions[$questionIndex]['id']}");
+      $alphabet = "A";
+      while($row3 = mysqli_fetch_assoc($result3)){
+          echo "<div class='form-check'>";
+          echo "<input type='radio' name='{$questions[$questionIndex]['id']}' value='$row3[id]'>";
+          echo "<button class='answer btn btn-light ms-2'>$alphabet. $row3[option_text]</button>";
+          echo "</div>";
+          $alphabet++;
+      }
+      echo "<div class='d-flex justify-content-between'>";
+      echo "<button type='submit' name='prev' class='btn btn-danger mt-2'>Prev</button>";
+      if ($questionIndex < count($questions) - 1) {
+        echo "<button type='submit' name='next' class='btn btn-success mt-2 ms-4'>Next</button>";
+      }else if($questionIndex == count($questions) - 1){
+        echo "<button type='submit' name='finish' class='btn btn-success mt-2 ms-4'>Finish</button>";
+      }
+      echo "</div>";
+      echo "</div>";
+      echo "</div>";
+      $num++;
+      ?>
+
+<!-- ... (Rest of the HTML code) ... -->
+
     </form>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -23,7 +23,7 @@
           </button>
           <ul class="dropdown-menu">
             <li class="dropdown-item"><?php echo $_SESSION["username"]; ?></li>
-            <li><a class="dropdown-item" href="#">Profil</a></li>
+            <li><a class="dropdown-item" href="profile.php">Profil</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a href="logout.php"><button type="button" class="dropdown-item text-decoration-none">Logout</button></a></li>
           </ul>
