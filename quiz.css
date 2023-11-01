@@ -14,7 +14,7 @@ body {
     color: #f3f3f3;
   }
   .logo span {
-    color: #fcc822;
+    color: white;
   }
   .nav-item {
     font-size: 14px;
@@ -27,16 +27,19 @@ body {
     font-size: 14px;
   }
   .nav-item a:hover {
-    color: orange;
+    color: #fcc822;
     text-decoration: underline;
     transition: 0.3s;
+  }
+  .logo:hover {
+    color: white;
   }
   .navbar{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   }
   /* navbar end */
 .form-check input[type="radio"] {
-    display: none; /* Menyembunyikan radio button */
+    background-color: #fcc822;
   }
 
 .answer {

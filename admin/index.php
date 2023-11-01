@@ -22,6 +22,7 @@ if(!isset($_SESSION["admin"])){
     <h1>Ini adalah laman admin</h1>
     <a href="../logout.php">Logout disini</a>
     <a href="view_user.php">Tabel User</a>
-    <a href="view_quiz.php">Tabel Quiz</a>
+    <a href="view_category.php">Tabel Category</a>
+    
 </body>
 </html>

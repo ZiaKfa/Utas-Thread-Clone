@@ -1,10 +1,21 @@
-
 <?php
-        include 'navbar.php';
+session_start();
+include 'navbar.php';
+include 'functions.php';
+if(!isset($_SESSION["login"])){
+    header("Location: login.php");
+    exit;
+}
+$username = $_SESSION["username"];
+$user = mysqli_query($mysqli, "SELECT * FROM user WHERE username = '$username'");
+$row = mysqli_fetch_assoc($user);
+$id = $row["id"];
+$useruid = $row["username"];
+$email = $row["email"];
 
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="eng">
     <head>
         <meta charset="utf-8" />
@@ -35,23 +46,54 @@
                             <h4>Profile</h4>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="process_profile.php">
+                            <form method="post" action="">
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input type="text" name="username" id="username" class="form-control" required>
+                                    <input type="text" name="username" id="username" class="form-control" required value="<?php echo $username ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" required>
+                                    <input type="email" name="email" id="email" class="form-control" required value="<?php echo $email ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control" required>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password to update profile" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <br>
+                                <button type="submit" class="btn btn-primary" name="save" id="save">Save</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+<?php
+    $newusername = $_POST["username"];
+    $newemail = $_POST["email"];
+    $password = $_POST["password"];
+    
+    $query = "UPDATE user SET username = '$newusername', email = '$newemail' WHERE id = '$id'";  
+    $newuser = mysqli_fetch_assoc($user);
+    //cek password
+    if(isset($_POST["save"])){
+        if(password_verify($password, $row["password"])){
+            $result = mysqli_query($mysqli,$query);
+            if($result){
+                $_SESSION["username"] = $newusername;
+                echo "<script>
+                        alert('Profile updated!');
+                        document.location.href = 'index.php';
+                    </script>";
+
+            } else {
+                echo "<script>
+                    alert('Profile update failed!');
+                </script>";
+            }
+        } else {
+            echo "<script>
+                    alert('Wrong password!');
+                </script>";
+        }
+    }
+?>

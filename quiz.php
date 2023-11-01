@@ -43,43 +43,22 @@
       echo "<p class='text-center'>$desc</p>";
       $num = 1;
       $result2 = mysqli_query($mysqli, "SELECT * FROM questions WHERE quiz_id = $quizid");
-      $questions = array();
       while($row2 = mysqli_fetch_assoc($result2)){
-          $questions[] = $row2;
-      }
-      $questionIndex = 0;
-
-      if (isset($_POST['next'])) {
-          $questionIndex++;
-      } elseif (isset($_POST['prev'])) {
-          if ($questionIndex > 0) {
-              $questionIndex--;
-          }
-      }
-
-      echo "<div class='container d-flex justify-content-center align-items-center fs-5'>";
-      echo "<div class='w-75'>";
-      echo "<p class='text-center'>" . ($num + 1) . ". " . $questions[$questionIndex]['quest_text'] . "</p>";
-      $result3 = mysqli_query($mysqli, "SELECT * FROM options WHERE question_id = {$questions[$questionIndex]['id']}");
-      $alphabet = "A";
-      while($row3 = mysqli_fetch_assoc($result3)){
-          echo "<div class='form-check'>";
-          echo "<input type='radio' name='{$questions[$questionIndex]['id']}' value='$row3[id]'>";
+        echo "<p class='text-center mt-5'>$num. $row2[quest_text]</p>";
+        $result3 = mysqli_query($mysqli, "SELECT * FROM options WHERE question_id = $row2[id]");
+        $alphabet = "A";
+        while($row3 = mysqli_fetch_assoc($result3)){
+          echo "<div class='container d-flex justify-content-center align-items-center fs-5'>";
+          echo "<div class='form-check w-50'>";
+          echo "<input type='radio' name='$row2[id]' value='$row3[id]'>";
           echo "<button class='answer btn btn-light ms-2'>$alphabet. $row3[option_text]</button>";
           echo "</div>";
+          echo "</div>";
           $alphabet++;
+        }
+        $num++;
       }
-      echo "<div class='d-flex justify-content-between'>";
-      echo "<button type='submit' name='prev' class='btn btn-danger mt-2'>Prev</button>";
-      if ($questionIndex < count($questions) - 1) {
-        echo "<button type='submit' name='next' class='btn btn-success mt-2 ms-4'>Next</button>";
-      }else if($questionIndex == count($questions) - 1){
-        echo "<button type='submit' name='finish' class='btn btn-success mt-2 ms-4'>Finish</button>";
-      }
-      echo "</div>";
-      echo "</div>";
-      echo "</div>";
-      $num++;
+      
       ?>
 
 <!-- ... (Rest of the HTML code) ... -->

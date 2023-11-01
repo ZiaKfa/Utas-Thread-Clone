@@ -6,7 +6,7 @@
         </div>
         <div class="col-3 d-flex flex-column align-items-center my-3 p-3 bg-white rounded-4 shadow-sm">
             <p>Create your own quiz here</p>
-            <a href="create.php"><button class="btn btn-warning">+ New quiz</button></a>
+            <a href="create_quiz.php"><button class="btn btn-warning">+ New quiz</button></a>
         </div>
         <div class="category">
             <h3>Category</h3>
