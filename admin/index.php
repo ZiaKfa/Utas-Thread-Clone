@@ -23,6 +23,8 @@ if(!isset($_SESSION["admin"])){
     <a href="../logout.php">Logout disini</a>
     <a href="view_user.php">Tabel User</a>
     <a href="view_category.php">Tabel Category</a>
-    
+    <a href="view_quiz.php">Tabel Quiz</a>
+    <a href="view_question.php">Tabel Question</a>
+    <a href="view_option.php">Tabel Option</a>
 </body>
 </html>

@@ -9,10 +9,14 @@
         header("Location: ../index.php");
         exit;
     }
-    $categ_id = $_GET["categ_id"];
-    $categ_name = $_GET["name"];
-    $result = mysqli_query($mysqli, "SELECT * FROM quizzes WHERE category_id = $categ_id");
-   
+    if(isset($_GET["categ_id"])){
+        $categ_id = $_GET["categ_id"];
+        $categ_name = $_GET["name"];
+        $result = mysqli_query($mysqli, "SELECT * FROM quizzes WHERE category_id = $categ_id"); 
+    } else {
+        $categ_name = "All";
+        $result = mysqli_query($mysqli, "SELECT * FROM quizzes");
+    }
 
 ?>
 <!DOCTYPE html>

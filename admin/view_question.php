@@ -9,9 +9,14 @@
         header("Location: ../index.php");
         exit;
     }
-    $quiz_id = $_GET["quiz_id"];
-    $quiz_name = $_GET["quiz_name"];
-    $result = mysqli_query($mysqli, "SELECT * FROM questions WHERE quiz_id = $quiz_id");
+    if(isset($_GET["quiz_id"])){
+        $quiz_id = $_GET["quiz_id"];
+        $quiz_name = $_GET["quiz_name"];
+        $result = mysqli_query($mysqli, "SELECT * FROM questions WHERE quiz_id = $quiz_id"); 
+    } else {
+        $quiz_name = "All";
+        $result = mysqli_query($mysqli, "SELECT * FROM questions");
+    }
    
 
 ?>

@@ -17,9 +17,10 @@ if(mysqli_num_rows($user) === 1){
     if(password_verify($password, $row["password"])){
         $_SESSION["login"] = true;
         $_SESSION["username"] = $username;
-        if($username == "admin")
+        $role = $row["role"];
+        if($role == "admin"){
             $_SESSION["admin"] = true;
-            header("Location: admin");
+        }
         header("Location: index.php");
         exit;
     }

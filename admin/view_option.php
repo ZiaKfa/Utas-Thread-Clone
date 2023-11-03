@@ -9,9 +9,15 @@
         header("Location: ../index.php");
         exit;
     }
-    $quest_id = $_GET["question_id"];
-    $quest_text = $_GET["question_text"];
-    $result = mysqli_query($mysqli, "SELECT * FROM options WHERE question_id = $quest_id");
+    if(isset($_GET["question_id"])){
+        $quest_id = $_GET["question_id"];
+        $quest_text = $_GET["question_text"];
+        $result = mysqli_query($mysqli, "SELECT * FROM options WHERE question_id = $quest_id"); 
+    } else {
+        $quest_text = "All";
+        $result = mysqli_query($mysqli, "SELECT * FROM options");
+    }
+    
    
 
 ?>
