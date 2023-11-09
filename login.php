@@ -17,6 +17,7 @@ if(mysqli_num_rows($user) === 1){
     if(password_verify($password, $row["password"])){
         $_SESSION["login"] = true;
         $_SESSION["username"] = $username;
+        $_SESSION["id"] = $row["id"];
         $role = $row["role"];
         if($role == "admin"){
             $_SESSION["admin"] = true;

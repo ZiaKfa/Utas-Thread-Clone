@@ -15,9 +15,10 @@
     <?php
         $result = mysqli_query($mysqli, "SELECT * FROM category ");
         while($row = mysqli_fetch_assoc($result)){
+            $categ_id = $row["id"];
             echo '<div class="title d-flex justify-content-between">';
             echo "<h4>$row[category_name]</h4>";
-            echo '<a href="#" class="text-decoration-none text-dark" data-bs-toggle="collapse" data-bs-target="#hiddenCards">View all</a>';
+            echo '<a href="view_category.php?id='.$categ_id.'" class="text-decoration-none text-dark">View all</a>';
             echo '</div>';
             $result2 = mysqli_query($mysqli, "SELECT * FROM quizzes WHERE category_id = $row[id] LIMIT 4");
             while($row2 = mysqli_fetch_assoc($result2)){

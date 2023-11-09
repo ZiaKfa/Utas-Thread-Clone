@@ -6,10 +6,15 @@
         exit;
     }
     $quizid = $_GET["id"];
+    $userid = $_SESSION["id"];
+    $username = $_SESSION["username"];
+    $user_query = mysqli_query($mysqli, "SELECT * FROM user WHERE id = $userid");
+    $user = mysqli_fetch_assoc($user_query);
     $result = mysqli_query($mysqli, "SELECT * FROM quizzes WHERE id = $quizid");
     $row = mysqli_fetch_assoc($result);
     $title = $row["title"];
     $desc = $row["description"];
+    
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +46,7 @@
       include("navbar.php");
       echo "<h2 class='text-center mt-5'>$title</h2>";
       echo "<p class='text-center'>$desc</p>";
+      echo "<p class='text-center'>Created by $user[username]</p>";
       $num = 1;
       $result2 = mysqli_query($mysqli, "SELECT * FROM questions WHERE quiz_id = $quizid");
       while($row2 = mysqli_fetch_assoc($result2)){
