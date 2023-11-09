@@ -79,5 +79,5 @@
         $creator = $user_id;
         $query = "INSERT INTO quizzes (title, description, category_id, creator_id) VALUES ('$title', '$desc', '$category', '$creator')";
         mysqli_query($mysqli, $query);
-        header("Location: create_questions.php?quiz_id=$mysqli->insert_id");
+        header("Location:create_questions.php?quiz_id=$mysqli->insert_id");
     }
