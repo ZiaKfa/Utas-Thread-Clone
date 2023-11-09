@@ -32,7 +32,7 @@ require_once("functions.php");
 
     <title>Queasy - Welcome!</title>
   </head>
-  <body class="bg-body-tertiary">
+  <body class="bg-body-tertiary hold-transition">
     <!-- Navbar -->
 <?php
     include("navbar.php");

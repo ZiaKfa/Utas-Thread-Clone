@@ -36,7 +36,7 @@
                 echo "<td>$i</td>";
                 echo "<td>".$row["category_name"]."</td>";
                 echo '<td><img src="../img/'.$row["img"].'" alt="img not found" height="50px" width="50px"></td>';
-                echo "<td><a href='view_quiz.php?&categ_id=".$row["id"]."&name=".$row["category_name"]."'>Manage Quiz</a></td>";
+                echo "<td><a href='index.php?content=quiz&categ_id=".$row["id"]."&name=".$row["category_name"]."'>Manage Quiz</a></td>";
                 echo "</tr>";
                 $i++;
             }

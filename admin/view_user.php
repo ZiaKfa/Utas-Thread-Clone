@@ -35,7 +35,7 @@
                 echo "<td>$i</td>";
                 echo "<td>".$row["username"]."</td>";
                 echo "<td>".$row["email"]."</td>";
-                echo "<td><a href='edit.php?table=user&id=$row[id]&username=$row[username]&email=$row[email]'>Edit</a> | <a href='delete.php?table=user&id=".$row["id"]."'>Delete</a></td>";
+                echo "<td><a href='index.php?content=edit&table=user&id=$row[id]&username=$row[username]&email=$row[email]'>Edit</a> | <a href='delete.php?table=user&id=".$row["id"]."'>Delete</a></td>";
                 echo "</tr>";
                 $i++;
             }

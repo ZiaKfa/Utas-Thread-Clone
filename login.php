@@ -16,7 +16,7 @@ if(mysqli_num_rows($user) === 1){
     //cek password
     if(password_verify($password, $row["password"])){
         $_SESSION["login"] = true;
-        $_SESSION["username"] = $username;
+        $_SESSION["username"] = $row["username"];
         $_SESSION["id"] = $row["id"];
         $role = $row["role"];
         if($role == "admin"){

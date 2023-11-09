@@ -1,6 +1,5 @@
 <?php
     session_start();
-    require_once("../functions.php");
     if(!isset($_SESSION["login"])){
         header("Location: ../login.php");
         exit;
@@ -16,7 +15,6 @@
     $quiz_query = mysqli_query($mysqli, "SELECT * FROM quizzes");
     $question_query = mysqli_query($mysqli, "SELECT * FROM questions");
     $option_query = mysqli_query($mysqli, "SELECT * FROM options");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +39,7 @@
                     <td><input type="text" name="email" value="<?php echo $_GET["email"] ?>"></td>
                 </tr>
                 <tr>
-                    <td><button type="submit" name="edit">Edit</button></td>
+                    <td><button type="submit" name="submit">Edit</button></td>
                 </tr>
             </table>
         </form>
@@ -84,12 +82,11 @@
                     </select></td>
                 </tr>  
                 <tr>
-                    <td><button type="submit" name="edit">Edit</button></td>
+                    <td><button type="submit" name="submit">Edit</button></td>
                 </tr>
             </table>
         </form>
     <?php endif; ?>
-
     <?php if($table == "question") : ?>
         <p>Edit Quiz</p>
         <br>
@@ -114,7 +111,7 @@
                     </select></td>
                 </tr>
                 <tr>
-                    <td><button type="submit" name="edit">Edit</button></td>
+                    <td><button type="submit" name="submit">Edit</button></td>
                 </tr>
             </table>
         </form>
@@ -146,7 +143,7 @@
                         ?>
                 </tr>
                 <tr>
-                    <td><button type="submit" name="edit">Edit</button></td>
+                    <td><button type="submit" name="submit">Edit</button></td>
                 </tr>
             </table>
         </form>
@@ -154,29 +151,42 @@
 </body>
 </html>
 <?php
-    if(isset($_POST["edit"])){
+    if(isset($_POST["submit"])){
+    echo "submit terpost";
+    if($table == "user"){
         $username = $_POST["username"];
         $email = $_POST["email"];
-        $title = $_POST["title"];
-        $desc = $_POST["desc"];
-        if($table == "user"){
-            $query = "UPDATE user SET username = '$username', email = '$email' WHERE id = '$id'";
-            $result = mysqli_query($mysqli,$query);
-            if($result){
-                header("Location: view_user.php");
-            }
+        $query = "UPDATE user SET username = '$username', email = '$email' WHERE id = '$id'";
+        $result = mysqli_query($mysqli,$query);
+        if($result){
+            echo "<script>
+                alert('Data berhasil diubah');
+                document.location.href = 'index.php?content=user';
+            </script>";
+        }
         } else if($table == "quizzes"){
+            $title = $_POST["title"];
+            $desc = $_POST["desc"];
             $query = "UPDATE quizzes SET title = '$title', description = '$desc' WHERE id = '$id'";
             $result = mysqli_query($mysqli,$query);
             if($result){
-                header("Location: view_quiz.php?categ_id=".$_GET["categ_id"]."&name=".$_GET["categ_name"]."");
+                echo "<script>
+                    alert('Data berhasil diubah');
+                    document.location.href = 'index.php?content=quiz&categ_id=".$_GET["categ_id"]."&name=".$_GET["categ_name"]."';
+                </script>";
             }
         } else if($table == "question"){
             $quest_text = $_POST["quest_text"];
+            $quiz = $_POST["quiz"];
+            echo "quest_text: $quest_text, quiz: $quiz<br>";
             $query = "UPDATE questions SET quest_text = '$quest_text' WHERE id = '$id'";
             $result = mysqli_query($mysqli,$query);
+            
             if($result){
-                header("Location: view_question.php?quiz_id=".$_GET["quiz_id"]."&quiz_name=".$_GET["quiz_name"]."");
+                echo "<script>
+                    alert('Data berhasil diubah');
+                    document.location.href = 'index.php?content=questions&quiz_id=".$_GET["quiz_id"]."&quiz_title=".$_GET["quiz_title"]."';
+                </script>";
             }
         } else if($table == "option"){
             $option_text = $_POST["option_text"];
@@ -185,12 +195,15 @@
             } else {
                 $is_answer = 0;
             }
-            
             $query = "UPDATE options SET option_text = '$option_text', is_answer = '$is_answer' WHERE id = '$id'";
             $result = mysqli_query($mysqli,$query);
             if($result){
-                header("Location: view_option.php?question_id=".$_GET["question_id"]."&question_text=".$_GET["question_text"]."");
+                echo "<script>
+                    alert('Data berhasil diubah');
+                    document.location.href = 'index.php?content=options&question_id=".$_GET["question_id"]."&quest_text=".$_GET["quest_text"]."';
+                </script>";
             }
         }
     }
-    
+
+?>

@@ -145,8 +145,8 @@
             if($result){
                 echo "<script>
                         alert('Quiz berhasil dibuat');
+                        window.location.href='index.php?content=quiz&categ_id=".$_GET["categ_id"]."&name=".$_GET["categ_name"]."';
                     </script>";
-                header("Location: view_quiz.php?categ_id=".$_GET["categ_id"]."&name=".$_GET["categ_name"]."");
             }else{
                 echo "<script>
                         alert('Quiz gagal dibuat');

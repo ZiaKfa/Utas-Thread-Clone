@@ -9,7 +9,7 @@
         header("Location: ../index.php");
         exit;
     }
-    if(isset($_GET["question_id"])){
+    if($_GET["question_id"]!=""){
         $quest_id = $_GET["question_id"];
         $quest_text = $_GET["question_text"];
         $result = mysqli_query($mysqli, "SELECT * FROM options WHERE question_id = $quest_id"); 
@@ -54,7 +54,7 @@
                         echo "False";
                     }
                 echo "</td>";
-                echo "<td><a href='edit.php?table=option&id=$row[id]&option_text=$row[option_text]&question_id=".$quest_id."&question_text=".$quest_text."'>Edit</a> | <a href='delete.php?table=options&id=".$row["id"]."&question_id=".$quest_id."&question_text=".$quest_text."'>Delete</a></td> ";
+                echo "<td><a href='index.php?content=edit&table=option&id=$row[id]&option_text=$row[option_text]&question_id=".$quest_id."&question_text=".$quest_text."'>Edit</a> | <a href='delete.php?table=options&id=".$row["id"]."&question_id=".$quest_id."&question_text=".$quest_text."'>Delete</a></td> ";
                 echo "</tr>";
                 $i++;
             }
