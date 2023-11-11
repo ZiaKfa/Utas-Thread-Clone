@@ -40,7 +40,7 @@
     <?php
         include("navbar.php");
     ?>
-    <div class="title d-flex justify-content-between">
+    <div class="title d-flex justify-content-between" style="max-width : 100vh;">
     <?php
         $category = mysqli_query($mysqli, "SELECT * FROM category WHERE id = $id");
         $row_categ = mysqli_fetch_assoc($category);
@@ -57,6 +57,8 @@
             echo '</a>';
             echo '</div>';
         }
+    
     ?>
+    </div>
 </body>
 </html>
