@@ -62,18 +62,18 @@
   height: 100vh;
 }
 
-.frame2 h1 {
+.frame2 h1, .frame3 h1, .frame4 h1 {
   color: var(--hitam, #18152d);
-  font-size: 48px;
+  font-size: 44px;
   font-style: normal;
   font-weight: 700;
   line-height: 64px;
 }
 
-.frame2 p {
+.frame2 p, .frame3 p, .frame4 p {
   color: var(--hitam, #18152d);
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -162,9 +162,25 @@ footer {
   color: #fcc822;
 }
 
-.card:hover {
+.kartu:hover {
   transform: scale(1.05);
   transition: 0.3s;
+}
+
+.view-all {
+  color: #18152d;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.view-all:hover {
+  color: #fcc822;
+  text-decoration: underline;
+  transition: 0.3s;
+
 }
 
 /* Show the mobile menu when the screen width is less than 768px */

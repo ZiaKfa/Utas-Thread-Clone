@@ -5,12 +5,17 @@
     <!-- Navbar items -->
     <ul class="nav" id="navbarList">
       <li class="nav-item">
-        <a class="nav-link active mx-2" aria-current="page" href="#">Home</a>
+        <a class="nav-link active mx-2" aria-current="page" href="index.php">Home</a>
       </li>
+      <?php if(isset($_SESSION["admin"])) : ?>
       <li class="nav-item">
-        <a class="nav-link mx-2" href="#">About us</a>
+        <a class="nav-link me-2 ms-3" href="admin/">Admin</a>
       </li>
+      <?php endif ?>
       <?php if(!isset($_SESSION["login"])) : ?>
+      <li class="nav-item">
+        <a class="nav-link me-2" href="#">About us</a>
+      </li>
       <li class="nav-item" id="dropdownItem">
         <a href="login.php"><button type="button" class="btn btn-warning ms-4 me-3 btnlogin">Login</button></a>
       </li>

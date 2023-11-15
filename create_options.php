@@ -32,7 +32,7 @@
     />
     <!-- icon css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="create.css">
 
     <link rel="stylesheet" href="index.css" />
     <link rel="icon" href="img/q!.ico" type="image/x-icon">
@@ -42,35 +42,40 @@
     <?php
         include("navbar.php");
     ?>
-    <form action="" method="post">
-        <table>
-            <tr>
-                <td>Option</td>
-                <td><input type="text" name="option_text"></td>
-            </tr>
-            <tr>
-                <td>Is Correct</td>
-                <td><input type="checkbox" name="is_correct"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><button type="submit" name="submit">submit</button></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><a href="index.php">Done</a></td>
-            </tr>
-        </table>
-    </form>
+    <div class="card w-50 m-auto shadow mt-5">
+        <h2 class="text-center fw-semibold mt-4 mb-3">Create Options</h2>
+        <form action="" method="post">
+            <table>
+                <tr>
+                    <td>Option</td>
+                    <td><input type="text" name="option_text"></td>
+                </tr>
+                <tr>
+                    <td>Is Correct</td>
+                    <td><input type="checkbox" name="is_correct"></td>
+                </tr>
+            </table>
+            <div class="button mx-4 my-3 text-center">
+                <button type="submit" name="submit" class="col-3 mx-3">Next Option</button>
+                <button type="submit" name="next" class="col-3 mx-3">Next Question</button>
+                <button class="btn btn-dark my-4 py-2 col-3 mx-3">
+                    <a href="index.php" class="text-light text-decoration-none">Done!</a>
+                </button>
+            </div>
+        </form>
+    </div>
+    
 </body>
 </html>
 <?php
     if(isset($_POST["submit"])){
         $option_text = $_POST["option_text"];
-        $is_correct = $_POST["is_correct"];
-        $result = mysqli_query($mysqli, "INSERT INTO options (option_text, is_correct, question_id) VALUES ('$option_text', '$is_correct', '$question_id')");
+        $is_correct = $_POST["is_answer"];
+        $result = mysqli_query($mysqli, "INSERT INTO options (option_text, is_answer, question_id) VALUES ('$option_text', '$is_correct', '$question_id')");
         if($result){
             echo "<script>alert('Option created successfully!')</script>";
         }
+    }else if(isset($_POST["next"])){
+        header("Location:create_questions.php?quiz_id=$mysqli->insert_id");
     }
 ?>

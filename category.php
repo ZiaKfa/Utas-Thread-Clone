@@ -9,7 +9,7 @@
             <a href="create_quiz.php"><button class="btn btn-warning">+ New quiz</button></a>
         </div>
         <div class="category">
-            <h3>Category</h3>
+            <h3>Category :</h3>
         </div>
 
     <?php
@@ -18,13 +18,13 @@
             $categ_id = $row["id"];
             echo '<div class="title d-flex justify-content-between">';
             echo "<h4>$row[category_name]</h4>";
-            echo '<a href="view_category.php?id='.$categ_id.'" class="text-decoration-none text-dark">View all</a>';
+            echo '<a href="view_category.php?id='.$categ_id.'" class="view-all">View all</a>';
             echo '</div>';
             $result2 = mysqli_query($mysqli, "SELECT * FROM quizzes WHERE category_id = $row[id] LIMIT 4");
             while($row2 = mysqli_fetch_assoc($result2)){
                 echo '<div class="col-3 mb-5 mt-2">';
                 echo '<a href="quiz.php?id='.$row2["id"].'" class="text-decoration-none">';
-                echo '<div class="card shadow" style="width: 16rem;">';
+                echo '<div class="kartu card shadow" style="width: 16rem;">';
                 echo '<img src="img/'.$row['img'].'" class="card-img-top mt-2" alt="img/'.$row['img'].'">';
                 echo '<div class="card-body">';
                 echo "<p class='card-text'>$row2[title]</p>";

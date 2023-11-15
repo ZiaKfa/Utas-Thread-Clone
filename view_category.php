@@ -36,19 +36,25 @@
     <link rel="icon" href="img/q!.ico" type="image/x-icon">
 
 </head>
-<body>
+<body class="overflow-x-hidden">
     <?php
         include("navbar.php");
+        $name_category = mysqli_query($mysqli, "SELECT * FROM category WHERE id = $id");
+        $row = mysqli_fetch_assoc($name_category);
+        echo '<div class="container my-4 text-center">';
+        echo '<h1> '.$row["category_name"].'</h1>';
+        echo '</div>';
     ?>
-    <div class="title d-flex justify-content-between" style="max-width : 100vh;">
+    <div class="d-flex justify-content-around">
     <?php
         $category = mysqli_query($mysqli, "SELECT * FROM category WHERE id = $id");
         $row_categ = mysqli_fetch_assoc($category);
         $result = mysqli_query($mysqli, "SELECT * FROM quizzes WHERE category_id = $id");
+        echo '<div class="row me-5 min-vh-100">';
         while($row = mysqli_fetch_assoc($result)){
             echo '<div class="col-3 mb-5 mt-2">';
             echo '<a href="quiz.php?id='.$row["id"].'" class="text-decoration-none">';
-            echo '<div class="card shadow" style="width: 16rem;">';
+            echo '<div class="kartu card shadow" style="width: 16rem;">';
             echo '<img src="img/'.$row_categ['img'].'" class="card-img-top mt-2" alt="img/'.$row_categ['img'].'">';
             echo '<div class="card-body">';
             echo "<p class='card-text'>$row[title]</p>";
@@ -57,8 +63,15 @@
             echo '</a>';
             echo '</div>';
         }
+        echo '</div>';
     
     ?>
     </div>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+></script>
 </body>
 </html>

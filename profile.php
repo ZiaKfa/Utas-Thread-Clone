@@ -21,29 +21,34 @@ $email = $row["email"];
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
-                rel="stylesheet"
-                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
-                integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv"
-                crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+            integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv"
+            crossorigin="anonymous"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-                href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900& display=swap"
-                rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900& display=swap"
+            rel="stylesheet"
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="index.css" />
+        <style>
+            .navbar {
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        </style>
         <link rel="icon" href="img/q!.ico" type="image/x-icon">
         <title>Queasy - Profile</title>
     </head>
     <body class="bg-body-tertiary">
-        <div class="container">
+        <div class="container d-block">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card shadow mt-5">
                         <div class="card-header">
-                            <h4>Profile</h4>
+                            <h5 class="mt-2"><i class="fas fa-user opacity-75 "></i> Profile</h5>
                         </div>
                         <div class="card-body">
                             <form method="post" action="">
@@ -51,11 +56,11 @@ $email = $row["email"];
                                     <label for="username">Username</label>
                                     <input type="text" name="username" id="username" class="form-control" required value="<?php echo $username ?>">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mt-2">
                                     <label for="email">Email</label>
                                     <input type="email" name="email" id="email" class="form-control" required value="<?php echo $email ?>">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mt-2">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password to update profile" required>
                                 </div>
@@ -97,3 +102,10 @@ $email = $row["email"];
         }
     }
 ?>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+></script>
+</body>
+</html>

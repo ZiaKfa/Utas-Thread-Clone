@@ -31,7 +31,7 @@
     />
     <!-- icon css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="create.css">
 
     <link rel="stylesheet" href="index.css" />
     <link rel="icon" href="img/q!.ico" type="image/x-icon">
@@ -41,23 +41,43 @@
     <?php
         include("navbar.php");
     ?>
-    <form action="" method="post">
-        <table>
-            <tr>
-                <td>Question</td>
-                <td><input type="text" name="quest_text"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><button type="submit" name="submit">submit</button></td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="index.php">Back</a>
-                </td>
-            </tr>
-        </table>
-    </form>
+    <div class="card w-50 m-auto shadow mt-5">
+        <h2 class="text-center fw-semibold mt-4 mb-3">Create Question</h2>
+        <form action="" method="post">
+            <table>
+                <tr>
+                    <td style="width: 18%">Question</td>
+                    <td style="width: 2%">:</td>
+                    <td style="width: 80%"><textarea name="quest_text" rows="3"></textarea></td>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><button type="submit" name="submit">Create</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <?php
+                        require_once("config.php");
+                        session_start();
+                        if(!isset($_SESSION["login"])){
+                            header("Location: login.php");
+                        }
+                        if(!isset($_GET["quiz_id"])){
+                            header("Location: create_quiz.php");
+                        }
+
+                        $quiz_id = $_GET["quiz_id"];
+
+                        if(isset($_POST["submit"])){
+                            $num_questions = $_POST["num_questions"];
+                            $_SESSION["num_questions"] = $num_questions;
+                            header("Location: create_questions.php?quiz_id=$quiz_id");
+                        }
+                    ?>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
 <?php

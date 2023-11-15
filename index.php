@@ -50,14 +50,13 @@ require_once("functions.php");
         <div class="container">
             <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12 m-auto hero">
-                <h1 class="hero-title">"Test Your Brain<br>With Queasy!"</h1>
-                <p class="hero-text">A quiz platform that helps you to test your knowledge and improve your skills</p>
-                <button type="button" class="btn btn-outline-dark btn-warning shadow">Get Started</button>
-                <a href="register.php"><button type="button" class="btn btn-outline-dark btn-light shadow sign">Sign Up</button></a>
-
+              <h1 class="hero-title">"Test Your Brain<br>With Queasy!"</h1>
+              <p class="hero-text">A quiz platform that helps you to test your knowledge and improve your skills</p>
+              <a href="#frame3"><button type="button" class="btn btn-outline-dark btn-warning shadow">Get Started</button></a>
+              <a href="register.php"><button type="button" class="btn btn-outline-dark btn-light shadow sign">Sign Up</button></a>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 image-hero">
-                <img src="img/hero.png" alt="hero" class="hero-img" />
+              <img src="img/hero.png" alt="hero" class="hero-img" />
             </div>
             </div>
         </div>
@@ -68,8 +67,8 @@ require_once("functions.php");
     <div class="frame2">
       <div class="container">
         <div class="row">
-            <h1>How to Play</h1>
-            <p>Discover the steps to kickstart your quiz journey. Learn the rules, answer questions, and aim for victory. Let's make your quiz experience enjoyable and successful!</p>
+          <h1>How to Play</h1>
+          <p>Discover the steps to kickstart your quiz journey. Learn the rules, answer questions, and aim for victory. Let's make your quiz experience enjoyable and successful!</p>
         </div>
         <div class="row d-flex justify-content-around align-content-center">
           <div class="card bg-body-tertiary shadow rounded-4" style="width: 18rem;">
@@ -92,13 +91,14 @@ require_once("functions.php");
               <h5 class="card-title">Step 3</h5>
               <p class="card-text">Start taking the quiz by choosing the correct answer </p>
             </div>
+          </div>
         </div>
       </div>
     </div>
     <img src="img/wave-bot.svg" alt="wave-bot">
 
     <!-- Frame 3 -->
-    <div class="frame3 min-vh-100">
+    <div class="frame3 min-vh-100" id="frame3">
       <div class="container">
         <div class="row text-center">
           <h1>Play anywhere and anytime</h1>
@@ -201,9 +201,6 @@ require_once("functions.php");
     </footer>
       
 
-      <script>
-        
-      </script>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

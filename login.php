@@ -46,10 +46,10 @@ if(mysqli_num_rows($user) === 1){
     <title>Login - Queasy</title>
   </head>
   <body>
-  <button type="button" class="btn btn-dark m-3"><a href="index.php" class="text-decoration-none text-light"> Back home </a></button>
+  <a href="index.php" class="text-decoration-none text-dark"><button class="btn btn-outline-dark m-3 link">Back home</button></a>
     <form action="" method="POST">
-    <div class="login d-flex justify-content-center align-items-center ">
-      <div class="container main">
+    <div class="login d-flex justify-content-center align-items-center">
+      <div class="container main w-75">
         <div class="row border rounded-4 shadow box-area">
         <!-- login left -->
           <div class="col-md-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #faf7f4">

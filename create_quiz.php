@@ -28,7 +28,7 @@
     />
     <!-- icon css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="create.css">
 
     <link rel="stylesheet" href="index.css" />
     <link rel="icon" href="img/q!.ico" type="image/x-icon">
@@ -38,18 +38,23 @@
     <?php
         include("navbar.php");
     ?>
+    <div class="card w-50 m-auto shadow mt-5">
     <form action="" method="post">
+        <h2 class="text-center fw-semibold mt-4 mb-3">Create Quiz</h2>
         <table>
             <tr>
                 <td>Title</td>
+                <td>:</td>
                 <td><input type="text" name="title"></td>
             </tr>
             <tr>
-                <td>Deskripsi</td>
+                <td>Description</td>
+                <td>:</td>
                 <td><textarea name="desc" cols="30" rows="4"></textarea></td>
             </tr>
             <tr>
-                <td>Kategori</td>
+                <td>Category</td>
+                <td>:</td>
                 <td><select name="category" id="category">
                     <?php
                         $category_query = mysqli_query($mysqli, "SELECT * FROM category");
@@ -65,10 +70,12 @@
             </tr>
             <tr>
                 <td></td>
-                <td><button type="submit" name="submit">Submit</button></td>
+                <td></td>
+                <td><button type="submit" name="submit" class="mb-3">Next</button></td>
             </tr>
         </table>
     </form>
+    </div>
 </body>
 </html>
 <?php
