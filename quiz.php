@@ -6,12 +6,11 @@
         exit;
     }
     $quizid = $_GET["id"];
-    $userid = $_SESSION["id"];
     $username = $_SESSION["username"];
-    $user_query = mysqli_query($mysqli, "SELECT * FROM user WHERE id = $userid");
-    $user = mysqli_fetch_assoc($user_query);
     $result = mysqli_query($mysqli, "SELECT * FROM quizzes WHERE id = $quizid");
-    $row = mysqli_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result); 
+    $user_query = mysqli_query($mysqli, "SELECT * FROM user WHERE id = $row[creator_id]");
+    $user = mysqli_fetch_assoc($user_query);
     $title = $row["title"];
     $desc = $row["description"];
     
@@ -41,7 +40,7 @@
     <title>Queasy - Quiz</title>
   </head>
   <body>
-    <form action="" method="post">
+    <form action="proses.php" method="post">
       <?php
       include("navbar.php");
       echo "<h2 class='text-center mt-5'>$title</h2>";
@@ -56,8 +55,8 @@
         while($row3 = mysqli_fetch_assoc($result3)){
           echo "<div class='container d-flex justify-content-center align-items-center fs-5'>";
           echo "<div class='form-check w-50'>";
-          echo "<input type='radio' name='$row2[id]' value='$row3[id]'>";
-          echo "<button class='answer btn btn-light ms-2'>$alphabet. $row3[option_text]</button>";
+          echo "<input type='radio' name='$row2[id]' value='$row3[id]' id='$row3[id]'>";
+          echo "<label for='$row3[id]' class='answer btn btn-light ms-2'>$alphabet. $row3[option_text]</label>";
           echo "</div>";
           echo "</div>";
           $alphabet++;
@@ -66,6 +65,9 @@
       }
       
       ?>
+      <div class="container d-flex justify-content-center align-items-center">
+        <button type="submit" name="submit" class="btn btn-dark my-4 py-2 col-3 mx-3">Submit</button>
+      </div>
 
 <!-- ... (Rest of the HTML code) ... -->
 
