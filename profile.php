@@ -66,6 +66,7 @@ $email = $row["email"];
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary" name="save" id="save">Save</button>
+                                <a href="my_quiz.php" class="btn btn-outline-dark">My Quiz</a>
                             </form>
                         </div>
                     </div>

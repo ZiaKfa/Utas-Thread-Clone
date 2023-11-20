@@ -22,6 +22,11 @@ if(mysqli_num_rows($user) === 1){
         if($role == "admin"){
             $_SESSION["admin"] = true;
         }
+        $answered = "select * from user_answers where user_id = '$row[id]' and is_correct = 1";
+        $answered_result = mysqli_query($mysqli,$answered);
+        $answered_row = mysqli_num_rows($answered_result);
+        $score = $answered_row * 10;
+        $upd_score = mysqli_query($mysqli,"update user set score = '$score' where id = '$row[id]'");
         header("Location: index.php");
         exit;
     }
