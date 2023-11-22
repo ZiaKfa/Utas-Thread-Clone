@@ -22,25 +22,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+      integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv"
+      crossorigin="anonymous"
+    />
+    <style>
+        table {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        .card{
+            width: 95%;
+            margin: 0 auto 3rem;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #2c2a3b;
+            resize: none;
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #2c2a3b;
+        }
+
+        button[type="submit"] {
+            padding: 9px;
+            background-color: #fcc822;
+            color: #2c2a3b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #cea51c;
+        }
+    </style>
     <title>Create</title>
 </head>
 <body>
     <!--form submit untuk quiz-->
     <?php if($table == "quizzes") : ?>
-        <p>Create Quiz</p>
-        <br>
+        <div class="card shadow">
+        <h2 class="text-center fw-semibold mt-4 mb-3">Create Quiz</h2>
         <form action="" method="post">
             <table>
                 <tr>
                     <td>Title</td>
+                    <td>:</td>
                     <td><input type="text" name="title"></td>
                 </tr>
                 <tr>
-                    <td>Deskripsi</td>
+                    <td>Description</td>
+                    <td>:</td>
                     <td><textarea name="desc" cols="30" rows="4"></textarea></td>
                 </tr>
                 <tr>
-                    <td>Kategori</td>
+                    <td>Category</td>
+                    <td>:</td>
                     <td><select name="category" id="category">
                         <?php
                             while($category = mysqli_fetch_assoc($category_query)){
@@ -54,7 +109,8 @@
                     </select></td>
                 </tr>
                 <tr>
-                    <td>Pembuat</td>
+                    <td>Creator</td>
+                    <td>:</td>
                     <td><select name="creator" id="creator">
                         <?php
                             while($creator = mysqli_fetch_assoc($user_query)){
@@ -64,23 +120,27 @@
                     </select></td>
                 </tr>    
                 <tr>
-                    <td><button type="submit" name="submit">submit</button></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="submit" name="submit" class='mb-3'>Create</button></td>
                 </tr>
             </table>
         </form>
+        </div>
     <?php endif; ?>
 
     <?php if($table == "questions") : ?>
-        <p>Create Question</p>
-        <br>
+        <h2 class="text-center fw-semibold mt-4 mb-3">Create Question</h2>
         <form action="" method="post">
             <table>
                 <tr>
                     <td>Question text</td>
+                    <td>:</td>
                     <td><textarea name="quest_text" cols="30" rows="4"></textarea></td>
                 </tr>
                 <tr>
                     <td>Quiz</td>
+                    <td>:</td>
                     <td><select name="quiz" id="quiz">
                         <?php
                             while($quiz = mysqli_fetch_assoc($quiz_query)){
@@ -94,26 +154,30 @@
                     </select></td>
                 </tr>
                 <tr>
-                    <td><button type="submit" name="submit">submit</button></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="submit" name="submit">Create</button></td>
                 </tr>
             </table>
         </form>
     <?php endif; ?>
     <?php if($table == "options") : ?>
-        <p>Create Option</p>
-        <br>
+        <h2 class="text-center fw-semibold mt-4 mb-3">Create Option</h2>
         <form action="" method="post">
             <table>
                 <tr>
                     <td>Option text</td>
+                    <td>:</td>
                     <td><input type="text" name="option_text"></td>
                 </tr>
                 <tr>
                     <td>Is answer</td>
-                    <td><input type="checkbox" name="is_answer" value="1">Benar</td>
+                    <td>:</td>
+                    <td><input type="checkbox" name="is_answer" value="1">Correct</td>
                 </tr>
                 <tr>
                     <td>Question</td>
+                    <td>:</td>
                     <td><select name="question" id="question">
                         <?php
                             while($question = mysqli_fetch_assoc($question_query)){
@@ -126,7 +190,9 @@
                         ?>
                 </tr>
                 <tr>
-                    <td><button type="submit" name="submit">submit</button></td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="submit" name="submit">Create</button></td>
                 </tr>
             </table>
         </form>

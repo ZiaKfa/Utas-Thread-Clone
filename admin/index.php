@@ -38,6 +38,7 @@ if(!isset($_SESSION["admin"])){
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -70,7 +71,7 @@ if(!isset($_SESSION["admin"])){
         <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control form-control-navbar" id="searchInput" type="search" placeholder="Search" aria-label="Search">
               <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
                   <i class="fas fa-search"></i>
@@ -105,7 +106,7 @@ if(!isset($_SESSION["admin"])){
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
       <img src="../img/Q!.png" alt="Logo queasy" class="brand-image">
-      <span class="brand-text font-weight-normal m-3">Queasy</span>
+      <span class="brand-text font-weight-normal m-3 text-decoration-none">Queasy</span>
     </a>
 
     <!-- Sidebar -->
@@ -117,18 +118,6 @@ if(!isset($_SESSION["admin"])){
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $_SESSION['username'] ?></a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
         </div>
       </div>
 
@@ -144,7 +133,7 @@ if(!isset($_SESSION["admin"])){
                     echo "active" ;
                 }
                 ?>
-            "><!-- kasih tag php disini bang if(isset($_POST('nav-link'))){echo active} -->
+            ">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Dashboard Admin
@@ -313,12 +302,12 @@ if(!isset($_SESSION["admin"])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <p class="m-0 opacity-75"><?php echo date('Y-m-d'); ?></p>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Admin Page</li>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item active">/ Admin Page</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -353,7 +342,7 @@ if(!isset($_SESSION["admin"])){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2023 Queasy</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0
@@ -381,9 +370,30 @@ a<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+
 <script src="dist/js/pages/dashboard.js"></script>
+<script>
+  var searchInput = document.getElementById("searchInput");
+  function search() {
+            var searchText = searchInput.value.toLowerCase();
+
+            // Ambil semua baris tabel
+            var tableRows = document.querySelectorAll("tbody tr");
+
+            // Loop melalui setiap baris tabel
+            for (var i = 0; i < tableRows.length; i++) {
+                var tableRow = tableRows[i];
+                var rowData = tableRow.innerText.toLowerCase();
+
+                // Periksa apakah teks pencarian cocok dengan data baris
+                if (rowData.includes(searchText)) {
+                    tableRow.style.display = ""; // Tampilkan baris jika cocok
+                } else {
+                    tableRow.style.display = "none"; // Sembunyikan baris jika tidak cocok
+                }
+            }
+        }
+        searchInput.addEventListener("input", search);
+</script>
 </body>
 </html>

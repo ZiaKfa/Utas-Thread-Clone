@@ -33,7 +33,7 @@ if(isset($_POST["register"])){
   </head>
   <body>
   <a href="index.php" class="text-decoration-none text-dark"><button class="btn btn-outline-dark m-3 link">Back home</button></a>
-    <div class="login d-flex justify-content-center align-items-center min-vh-100">
+    <div class="login d-flex justify-content-center align-items-center">
       <div class="container main w-75">
         <div class="row border rounded-4 box-area shadow">
           <!-- login left -->
