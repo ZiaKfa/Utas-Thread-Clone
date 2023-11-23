@@ -36,52 +36,9 @@
 
 
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="hasil.css">
     <link rel="icon" href="img/q!.ico" type="image/x-icon">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .question {
-            margin-bottom: 10px;
-        }
-        .correct-answer {
-            color: green;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 7px;
-            cursor: pointer;
-            animate: 0.2s;
-            box-shadow: 0px 0px 0px #000000;
-            background: #FFC822;
-            border-radius: 1px;
-            border: 0px solid #000000;
-            }
-            input[type=range]::-webkit-slider-thumb {
-            box-shadow: 0px 0px 0px #000000;
-            border: 1px solid #000000;
-            height: 18px;
-            width: 18px;
-            border-radius: 25px;
-            background: #FFC822;
-            cursor: pointer;
-            -webkit-appearance: none;
-            margin-top: -6px;
-            }
-    </style>
+
 </head>
 <body>
     <?php include('navbar.php'); ?>

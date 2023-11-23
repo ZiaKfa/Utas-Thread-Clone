@@ -78,7 +78,7 @@
         }
     }else if(isset($_POST["next"])){
         $option_text = $_POST["option_text"];
-        $is_correct = $_POST["is_correct"];
+        $is_correct = $_POST["is_answer"];
         $result = mysqli_query($mysqli, "INSERT INTO options (option_text, is_answer, question_id) VALUES ('$option_text', '$is_correct', '$question_id')");
         if($result){
             echo "<script>alert('Option created successfully!')

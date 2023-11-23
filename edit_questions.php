@@ -4,11 +4,9 @@
     if(!isset($_SESSION["login"])){
         header("Location: login.php");
     }
-    if(!isset($_GET["quiz_id"])){
-        header("Location: create_quiz.php");
-    }
-
-
+    $id = $_GET["id"];
+    $result = mysqli_query($mysqli, "SELECT * FROM questions WHERE id = '$id'");
+    $row = mysqli_fetch_array($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,19 +35,19 @@
     <link rel="stylesheet" href="index.css" />
     <link rel="icon" href="img/q!.ico" type="image/x-icon">
     <title>Create Question</title>
-</head> 
+</head>
 <body>
     <?php
         include("navbar.php");
     ?>
     <div class="card w-50 m-auto shadow mt-5">
-        <h2 class="text-center fw-semibold mt-4 mb-3">Create Question</h2>
+        <h2 class="text-center fw-semibold mt-4 mb-3">Edit Question</h2>
         <form action="" method="post">
             <table>
                 <tr>
                     <td style="width: 18%">Question</td>
                     <td style="width: 2%">:</td>
-                    <td style="width: 80%"><textarea name="quest_text" rows="3"></textarea></td>
+                    <td style="width: 80%"><textarea name="quest_text" rows="3"><?php echo $row["quest_text"]?></textarea></td>
                 <tr>
                     <td></td>
                     <td></td>
@@ -57,24 +55,6 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <?php
-                        require_once("config.php");
-                        session_start();
-                        if(!isset($_SESSION["login"])){
-                            header("Location: login.php");
-                        }
-                        if(!isset($_GET["quiz_id"])){
-                            header("Location: create_quiz.php");
-                        }
-
-                        $quiz_id = $_GET["quiz_id"];
-
-                        if(isset($_POST["submit"])){
-                            $num_questions = $_POST["num_questions"];
-                            $_SESSION["num_questions"] = $num_questions;
-                            header("Location: create_questions.php?quiz_id=$quiz_id");
-                        }
-                    ?>
                 </tr>
             </table>
         </form>
@@ -84,10 +64,9 @@
 <?php
     if(isset($_POST["submit"])){
         $quest_text = $_POST["quest_text"];
-        $quiz_id = $_GET["quiz_id"];
-        $result = mysqli_query($mysqli, "INSERT INTO questions (quest_text, quiz_id) VALUES ('$quest_text', '$quiz_id')");
+        $result = mysqli_query($mysqli, "update questions set quest_text = '$quest_text' where id = '$id'");
         if($result){
-            header("Location: create_options.php?question_id=$mysqli->insert_id&quiz_id=$quiz_id");
+            header("Location: my_questions.php?id=$row[quiz_id]");
         }
     }
 ?>
