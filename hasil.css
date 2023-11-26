@@ -1,16 +1,17 @@
+hasil.css
 body {
   font-family: Arial, sans-serif;
   background-color: #f2f2f2;
 }
 .container {
-  max-width: 800px;
+  max-width: 50vw;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 50px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-h1 {
+h5 {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -20,6 +21,7 @@ h1 {
 .correct-answer {
   color: green;
 }
+
 input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 7px;
@@ -39,4 +41,13 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -6px;
+}
+
+.range, .tombol {
+    width: 100%;
+    text-align: center;
+}
+
+.benar p {
+    margin-left: 40px;
 }

@@ -10,6 +10,8 @@
         $incorrect_querry = "SELECT * FROM questions WHERE id IN (".implode(',',array_keys($_SESSION['incorrect'])).")";
         $incorrect_result = mysqli_query($mysqli,$incorrect_querry);
     }
+
+    $accuration = round(($_SESSION['correct'] / $_SESSION['question_num']) * 100, 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,23 +45,48 @@
 <body>
     <?php include('navbar.php'); ?>
     <div class="container">
-        <h1>Quiz Result</h1>
-        <p>You got <?php echo $_SESSION['score']; ?> score</p>
-        <p>You got <?php echo $_SESSION['correct']; ?> correct answer out of <?php echo $_SESSION['question_num']; ?> questions</p>
-        <form action="">
-            <label for="akurasi">Accuration</label><br>
-            <input type="range" class="form-range w-75" value="<?php echo $_SESSION['correct'];?>" name="akurasi" min="0" max="<?php echo $_SESSION['question_num']; ?>" disabled>
-
-        </form>
+        <h5>Review</h5>
+        <div class="review d-flex justify-content-between my-3">
+            <div class="ucapan mt-2">
+                <?php
+                    if($_SESSION['score']>=80){
+                        echo "<h2>Congratulation!</h2>";
+                    }else if($_SESSION['score']>=60){
+                        echo "<h2>Not Bad!</h2>";
+                    }else if($_SESSION['score']>=40){
+                        echo "<h2>Keep Spirit!</h2>";
+                    }else if($_SESSION['score']>=20){
+                        echo "<h2>Don't Give Up!</h2>";
+                    }else if($_SESSION['score']>=0){
+                        echo "<h2>WTF!</h2>";
+                    }
+                ?>
+                <p>You got <?php echo $_SESSION['score']; ?> score</p>
+            </div>
+            <div class="benar my-3">
+                <h6 class="fw-semibold">Correct Answer</h6>
+                <p><?php echo $_SESSION['correct']; ?> / <?php echo $_SESSION['question_num']; ?> </p>
+            </div>
+        </div>
+        <div class="range">
+            <form action="">
+                <label for="akurasi"><?php echo $accuration; ?>% Accuration</label><br>
+                <input type="range" class="form-range w-100 justify-content-center" value="<?php echo $_SESSION['correct'];?>" name="akurasi" min="0" max="<?php echo $_SESSION['question_num']; ?>" disabled>
+            </form>
+        </div>
+        <div class="tombol mt-3 mb-5">
+        <a href="index.php"><button class="btn btn-warning shadow-sm justify-content-center w-100">Find Another Quiz</button></a>
+        </div>
+        
         <?php
             if (isset($_SESSION['incorrect'])&& !empty($_SESSION['incorrect'])){
-                echo "<h2>The Correct Answer:</h2>";
+                echo "<h5>Quiz Result:</h5>";
             }
         ?>
         <?php
             if(isset($_SESSION['incorrect']) && !empty($_SESSION['incorrect'])){
                 while($row = mysqli_fetch_assoc($incorrect_result)){
-                echo "<div class='question'>";
+                echo "<div class='card question p-4'>";
                 echo "<p>".$row['quest_text']."</p>";
                 $correct = mysqli_query($mysqli,"SELECT * FROM options WHERE question_id = '$row[id]' AND is_answer = 1");
                 $correct = mysqli_fetch_assoc($correct);

@@ -47,20 +47,12 @@
             <tr>
                 <td>Title</td>
                 <td>:</td>
-                <td><input type="text" name="title" value="
-                    <?php
-                        echo $quiz["title"];
-                    ?>
-                "></td>
+                <td><input type="text" name="title" value="<?php echo $quiz["title"];?>"></td>
             </tr>
             <tr>
                 <td>Description</td>
                 <td>:</td>
-                <td><textarea name="desc" cols="30" rows="4">
-                    <?php
-                        echo $quiz["description"]
-                    ?>
-                </textarea></td>
+                <td><textarea name="desc" cols="30" rows="4"><?php echo $quiz["description"]?></textarea></td>
             </tr>
             <tr>
                 <td>Category</td>

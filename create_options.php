@@ -4,11 +4,12 @@
     if(!isset($_SESSION["login"])){
         header("Location: login.php");
     }
-    if(!isset($_GET["question_id"])){
+    if(!isset($_GET["id"])){
         header("Location: create_quiz.php");
     }
-    $question_id = $_GET["question_id"];
+    $question_id = $_GET["id"];
     $quiz_id = $_GET["quiz_id"];
+    $prev = $_SERVER['HTTP_REFERER'];
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +61,7 @@
                 <button type="submit" name="submit" class="col-3 mx-3">Next Option</button>
                 <button type="submit" name="next" class="col-3 mx-3">Next Question</button>
                 <button class="btn btn-dark my-4 py-2 col-3 mx-3">
-                    <a href="index.php" class="text-light text-decoration-none">Done!</a>
+                    <a href="<?php echo $prev ?>" class="text-light text-decoration-none">Done!</a>
                 </button>
             </div>
         </form>
@@ -72,6 +73,9 @@
     if(isset($_POST["submit"])){
         $option_text = $_POST["option_text"];
         $is_correct = $_POST["is_correct"];
+        if($_POST["is_correct"] == ""){
+            $is_correct = 0;
+        }
         $result = mysqli_query($mysqli, "INSERT INTO options (option_text, is_answer, question_id) VALUES ('$option_text', '$is_correct', '$question_id')");
         if($result){
             echo "<script>alert('Option created successfully!')</script>";
@@ -79,6 +83,9 @@
     }else if(isset($_POST["next"])){
         $option_text = $_POST["option_text"];
         $is_correct = $_POST["is_correct"];
+        if($_POST["is_correct"] == ""){
+            $is_correct = 0;
+        }
         $result = mysqli_query($mysqli, "INSERT INTO options (option_text, is_answer, question_id) VALUES ('$option_text', '$is_correct', '$question_id')");
         if($result){
             echo "<script>alert('Option created successfully!')

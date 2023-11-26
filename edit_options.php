@@ -5,17 +5,18 @@
         header("Location: login.php");
     }
     $id = $_GET["id"];
-    $result = mysqli_query($mysqli, "SELECT * FROM questions WHERE id = '$id'");
+    $result = mysqli_query($mysqli, "SELECT * FROM options WHERE id = '$id'");
     $row = mysqli_fetch_array($result);
+    $quest_id = $row["question_id"];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bootstrap CSS -->
-    <link
+        <!-- Bootstrap CSS -->
+        <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
       integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv"
@@ -34,27 +35,25 @@
 
     <link rel="stylesheet" href="index.css" />
     <link rel="icon" href="img/q!.ico" type="image/x-icon">
-    <title>Create Question</title>
+    <title>Document</title>
+
 </head>
 <body>
-    <?php
-        include("navbar.php");
-    ?>
-    <div class="card w-50 m-auto shadow mt-5">
+    <?php include("navbar.php") ?>
+< <div class="card w-50 m-auto shadow mt-5">
         <h2 class="text-center fw-semibold mt-4 mb-3">Edit Question</h2>
         <form action="" method="post">
             <table>
                 <tr>
-                    <td style="width: 18%">Question</td>
-                    <td style="width: 2%">:</td>
-                    <td style="width: 80%"><textarea name="quest_text" rows="3"><?php echo $row["quest_text"]?></textarea></td>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><button type="submit" name="submit">Edit</button></td>
+                    <td>Option text</td>
+                    <td><input type="text" name="option_text" value="<?php echo $row["option_text"] ?>"></td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td>Is answer</td>
+                    <td><input type="checkbox" name="is_answer" value="1">Benar</td>
+                </tr>
+                <tr>
+                    <td><button type="submit" name="submit">Edit</button></td>
                 </tr>
             </table>
         </form>
@@ -63,10 +62,16 @@
 </html>
 <?php
     if(isset($_POST["submit"])){
-        $quest_text = $_POST["quest_text"];
-        $result = mysqli_query($mysqli, "update questions set quest_text = '$quest_text' where id = '$id'");
+        $option_text = $_POST["option_text"];
+        $is_answer = $_POST["is_answer"];
+        if(!isset($is_answer)){
+            $is_answer = 0;
+        }
+        $sql = "UPDATE options SET option_text = '$option_text', is_answer = '$is_answer' WHERE id = '$id'";
+        $result = mysqli_query($mysqli, $sql);
         if($result){
-            echo "<script>alert('Question has been edited!');window.location='my_questions.php?id=$row[quiz_id]';</script>";
+           echo "<script>alert('Edit option berhasil!')
+              window.location='my_options.php?id=$quest_id';
+           </script>";
         }
     }
-?>

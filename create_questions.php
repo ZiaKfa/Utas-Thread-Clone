@@ -5,7 +5,8 @@
         header("Location: login.php");
     }
     if(!isset($_GET["quiz_id"])){
-        header("Location: create_quiz.php");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 
 
@@ -87,7 +88,12 @@
         $quiz_id = $_GET["quiz_id"];
         $result = mysqli_query($mysqli, "INSERT INTO questions (quest_text, quiz_id) VALUES ('$quest_text', '$quiz_id')");
         if($result){
-            header("Location: create_options.php?question_id=$mysqli->insert_id&quiz_id=$quiz_id");
+            if(isset($_GET["go"])){
+                header("Location: my_questions.php?id=$quiz_id");
+            }
+            else{
+                header("Location: create_options.php?question_id=$mysqli->insert_id&quiz_id=$quiz_id");
+            }
         }
     }
 ?>
