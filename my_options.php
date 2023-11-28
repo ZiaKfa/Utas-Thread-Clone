@@ -8,6 +8,7 @@
     $id = $_GET["id"];
     $result = mysqli_query($mysqli, "SELECT * FROM options WHERE question_id = '$id'");
     $quiz_id = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT * FROM questions WHERE id = '$id'"))["quiz_id"];
+    $_SESSION["last_url"] = "my_options.php?id=$id";
 ?>
 <!DOCTYPE html>
 <html lang="en">

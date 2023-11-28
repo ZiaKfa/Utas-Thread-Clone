@@ -39,7 +39,7 @@
     <?php
         echo "<p class='my-1 fw-medium me-2'>For question: $quest_text</p>";
     ?>
-    <p class="fw-medium me-2">Create multiple choice : <a href="create.php?table=options&quest_id=<?php echo $quest_id ?>&quest_text=<?php echo $quest_text ?>">here!</a></p>
+    <p class="fw-medium me-2">Create multiple choice : <a href="index.php?content=create&table=options&quest_id=<?php echo $quest_id ?>&quest_text=<?php echo $quest_text ?>">here!</a></p>
     <div class="table col-12">
     <table class="table table-striped" border='1'>
         <thead>

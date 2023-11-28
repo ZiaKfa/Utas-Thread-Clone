@@ -9,7 +9,6 @@
     }
     $question_id = $_GET["id"];
     $quiz_id = $_GET["quiz_id"];
-    $prev = $_SERVER['HTTP_REFERER'];
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +60,7 @@
                 <button type="submit" name="submit" class="col-3 mx-3">Next Option</button>
                 <button type="submit" name="next" class="col-3 mx-3">Next Question</button>
                 <button class="btn btn-dark my-4 py-2 col-3 mx-3">
-                    <a href="<?php echo $prev ?>" class="text-light text-decoration-none">Done!</a>
+                    <a href="<?php echo $_SESSION["last_url"] ?>" class="text-light text-decoration-none">Done!</a>
                 </button>
             </div>
         </form>

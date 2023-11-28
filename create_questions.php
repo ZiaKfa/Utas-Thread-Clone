@@ -4,11 +4,6 @@
     if(!isset($_SESSION["login"])){
         header("Location: login.php");
     }
-    if(!isset($_GET["quiz_id"])){
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit;
-    }
-
 
 ?>
 <!DOCTYPE html>

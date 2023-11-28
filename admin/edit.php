@@ -21,12 +21,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        h1 {
+            text-align: center;
+            margin: 3rem 0;
+            font-weight: bold;
+            color: #2c2a3b;
+        }
+
+        table {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        .card{
+            width: 95%;
+            margin: 0 auto 3rem;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #2c2a3b;
+            resize: none;
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #2c2a3b;
+        }
+
+        button[type="submit"] {
+            padding: 9px;
+            background-color: #fcc822;
+            color: #2c2a3b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 60px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #cea51c;
+        }
+    </style>
     <title>Edit</title>
 </head>
 <body>
     <!--form edit untuk user-->
     <?php if($table == "user") : ?>
-        <p>Edit User</p>
+        <h1>Edit User</h1>
         <br>
         <form action="" method="post">
             <table>
@@ -46,7 +100,7 @@
     <?php endif; ?>
     <!--form edit untuk quiz-->
     <?php if($table == "quizzes") : ?>
-        <p>Edit Quiz</p>
+        <h1>Edit Quiz</h1>
         <br>
         <form action="" method="post">
             <table>
@@ -88,7 +142,7 @@
         </form>
     <?php endif; ?>
     <?php if($table == "question") : ?>
-        <p>Edit Quiz</p>
+        <h1>Edit Quiz</h1>
         <br>
         <form action="" method="post">
             <table>
@@ -117,7 +171,7 @@
         </form>
     <?php endif; ?>
     <?php if($table == "option") : ?>
-        <p>Edit Option</p>
+        <h1>Edit Option</h1>
         <br>
         <form action="" method="post">
             <table>

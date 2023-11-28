@@ -38,7 +38,7 @@
     <?php
         echo "<p class='my-1 fw-medium me-2'>Quiz: $quiz_name</p>";
     ?>
-    <p class="fw-medium me-2">Create Question : <a href="create.php?table=questions&quiz_id=<?php echo $quiz_id ?>&quiz_name=<?php echo $quiz_name ?>">here!</a></p>
+    <p class="fw-medium me-2">Create Question : <a href="index.php?content=create&table=questions&quiz_id=<?php echo $quiz_id ?>&quiz_name=<?php echo $quiz_name ?>">here!</a></p>
     <div class="table col-12">
     <table border="1" class="table table-striped">
         <thead>

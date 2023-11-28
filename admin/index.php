@@ -335,8 +335,11 @@ if(!isset($_SESSION["admin"])){
         }else if($content == "create"){
           include "create.php";
         }
+      } else {
+        include "dashboard.php";
       }
       ?>
+
     </section>
     <!-- /.content -->
   </div>
